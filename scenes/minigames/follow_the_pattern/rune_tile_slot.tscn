@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://8grqanudisur"]
+
+[ext_resource type="Script" path="res://scripts/minigames/follow_the_pattern/rune_tile_slot.gd" id="1_s5q0g"]
+[ext_resource type="Texture2D" uid="uid://cnqaoi20vxncv" path="res://assets/sprites/rune-tile-slot.png" id="2_057ro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dwfd"]
+size = Vector2(20, 28)
+
+[node name="RuneTileSlot" type="Node2D"]
+script = ExtResource("1_s5q0g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_057ro")
+
+[node name="TileArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileArea"]
+shape = SubResource("RectangleShape2D_3dwfd")
+
+[node name="TileCenter" type="Marker2D" parent="."]
+
+[connection signal="area_entered" from="TileArea" to="." method="_on_tile_area_area_entered"]
+[connection signal="area_exited" from="TileArea" to="." method="_on_tile_area_area_exited"]

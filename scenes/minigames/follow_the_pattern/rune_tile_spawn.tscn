@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwy0x7fl2yjy2"]
+
+[ext_resource type="Texture2D" uid="uid://bkx3j215prqjs" path="res://assets/sprites/rune-tile-base.png" id="1_87j5p"]
+[ext_resource type="Script" path="res://scripts/minigames/follow_the_pattern/rune_tile_spawn.gd" id="1_y5oo3"]
+[ext_resource type="Texture2D" uid="uid://mlvgbx5ih55n" path="res://assets/sprites/TileNums.png" id="2_6khny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g5x7"]
+size = Vector2(16, 24)
+
+[node name="RuneTileSpawn" type="Node2D"]
+script = ExtResource("1_y5oo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_87j5p")
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource("RectangleShape2D_5g5x7")
+
+[node name="Rune" type="Sprite2D" parent="."]
+texture = ExtResource("2_6khny")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_entered"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8l7slygtuc7s"]
+
+[ext_resource type="Script" path="res://scripts/minigames/follow_the_pattern/test_game.gd" id="1_x7avq"]
+
+[node name="TestGame" type="Node2D"]
+script = ExtResource("1_x7avq")
+sequence_length = 5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="RuneTileSlotContainer" type="Node2D" parent="."]
+
+[node name="RuneTileBaseContainer" type="Node2D" parent="."]
+
+[node name="RuneSequenceContainer" type="Node2D" parent="."]
+
+[node name="RuneTileSpawnContainer" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="check_order" from="." to="." method="_on_check_order"]
+[connection signal="make_tile" from="." to="." method="_on_make_tile"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
