@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvh5iw5urcwrv"]
+
+[ext_resource type="PackedScene" uid="uid://ckklo13pgv070" path="res://scenes/minigames/measure_ingredients/scale.tscn" id="1_0jcg3"]
+[ext_resource type="PackedScene" uid="uid://cw5gbchc2403s" path="res://scenes/minigames/measure_ingredients/ingredient.tscn" id="2_vk7ld"]
+
+[node name="MeasIngredGame" type="Node2D"]
+
+[node name="Scale" parent="." instance=ExtResource("1_0jcg3")]
+
+[node name="Ingredient" parent="." instance=ExtResource("2_vk7ld")]
+position = Vector2(98, -15)

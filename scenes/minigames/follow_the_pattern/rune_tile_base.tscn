@@ -26,8 +26,5 @@ region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
 [connection signal="finished_moving" from="." to="." method="_on_finished_moving"]
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="area_entered" from="TileArea" to="." method="_on_tile_area_area_entered"]
-[connection signal="area_exited" from="TileArea" to="." method="_on_tile_area_area_exited"]
 [connection signal="mouse_entered" from="TileArea" to="." method="_on_tile_area_mouse_entered"]
 [connection signal="mouse_exited" from="TileArea" to="." method="_on_tile_area_mouse_exited"]

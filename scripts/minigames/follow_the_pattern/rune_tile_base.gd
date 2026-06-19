@@ -69,7 +69,7 @@ func click_on() -> void:
 
 func move_tile(pos : Vector2 = rest_pos) -> void:
 	reset_tween(true)
-	pos_to_move = pos
+	#pos_to_move = pos
 	tween.tween_property(self, "global_position", pos, 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	done_moving = false
 
@@ -79,7 +79,6 @@ func new_rest_pos(pos : Vector2 = starting_pos) -> void:
 func reset_tile_pos() -> void:
 	new_rest_pos()
 	move_tile()
-	#hovered_slot = null
 
 func _on_tile_area_mouse_entered() -> void:
 	if tile_area.monitoring:
@@ -109,32 +108,8 @@ func determine_closest_overlapping_slot() -> RuneTileSlot:
 		
 	return slot
 
-func _on_tile_area_area_entered(area: Area2D) -> void:
-	var area_parent = area.get_parent()
-	
-	if area_parent is RuneTileSlot:
-		#hovered_slot = area_parent
-		pass
-
-
-func _on_tile_area_area_exited(area: Area2D) -> void:
-	var area_parent = area.get_parent()
-	
-	if area_parent is RuneTileSlot:
-		#hovered_slot = null
-		pass
-
-
-func _on_tree_entered() -> void:
-	#print("My name is " + str(self.name))
-	pass
-
-
 func _on_finished_moving() -> void:
 	#print("I'm done.")
 	done_moving = true
-	#if slotted:
-	if rest_pos == starting_pos:
+	if global_position == starting_pos && not clicked:
 		queue_free()
-		#else:
-			#game.make_another_tile(self)

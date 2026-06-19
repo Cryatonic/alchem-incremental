@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckklo13pgv070"]
+
+[ext_resource type="Texture2D" uid="uid://ddg6qd3b3ca5r" path="res://assets/sprites/scale-components.png" id="1_pwjx6"]
+[ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/scale.gd" id="1_ykrwg"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ljljs"]
+b = Vector2(8, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ucba5"]
+b = Vector2(-8, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rie4u"]
+b = Vector2(20, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72n0d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1dtuf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_she8i"]
+
+[node name="Scale" type="Node2D"]
+script = ExtResource("1_ykrwg")
+
+[node name="SpriteComponents" type="Node2D" parent="."]
+
+[node name="ScaleBody" type="Sprite2D" parent="SpriteComponents"]
+position = Vector2(0, -8)
+texture = ExtResource("1_pwjx6")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="ScaleBase" type="Sprite2D" parent="SpriteComponents"]
+texture = ExtResource("1_pwjx6")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Topper" type="Sprite2D" parent="SpriteComponents"]
+position = Vector2(0, -24)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_pwjx6")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="ScaleArm" type="Sprite2D" parent="SpriteComponents"]
+position = Vector2(0, -24)
+rotation = 1.5708
+texture = ExtResource("1_pwjx6")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 96)
+
+[node name="LeftCup" type="Sprite2D" parent="SpriteComponents"]
+position = Vector2(-48, -42)
+texture = ExtResource("1_pwjx6")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="RightCup" type="Sprite2D" parent="SpriteComponents"]
+position = Vector2(48, -42)
+texture = ExtResource("1_pwjx6")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CupBodies" type="Node2D" parent="."]
+
+[node name="LeftCupBody" type="AnimatableBody2D" parent="CupBodies"]
+
+[node name="LS" type="CollisionShape2D" parent="CupBodies/LeftCupBody"]
+position = Vector2(-65, -42)
+shape = SubResource("SegmentShape2D_ljljs")
+
+[node name="RS" type="CollisionShape2D" parent="CupBodies/LeftCupBody"]
+position = Vector2(-31, -42)
+shape = SubResource("SegmentShape2D_ucba5")
+
+[node name="BS" type="CollisionShape2D" parent="CupBodies/LeftCupBody"]
+position = Vector2(-58, -27)
+shape = SubResource("SegmentShape2D_rie4u")
+
+[node name="RightCupBody" type="AnimatableBody2D" parent="CupBodies"]
+position = Vector2(96, 0)
+
+[node name="LS" type="CollisionShape2D" parent="CupBodies/RightCupBody"]
+position = Vector2(-65, -42)
+shape = SubResource("SegmentShape2D_ljljs")
+
+[node name="RS" type="CollisionShape2D" parent="CupBodies/RightCupBody"]
+position = Vector2(-31, -42)
+shape = SubResource("SegmentShape2D_ucba5")
+
+[node name="BS" type="CollisionShape2D" parent="CupBodies/RightCupBody"]
+position = Vector2(-58, -27)
+shape = SubResource("SegmentShape2D_rie4u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="TableTop" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TableTop"]
+position = Vector2(0, 17)
+shape = SubResource("WorldBoundaryShape2D_72n0d")
+
+[node name="LCupDetectArea" type="Area2D" parent="."]
+position = Vector2(-48, -37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LCupDetectArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1dtuf")
+
+[node name="RCupDetectArea" type="Area2D" parent="."]
+position = Vector2(48, -37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RCupDetectArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_she8i")

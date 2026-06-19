@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8l7slygtuc7s"]
 
-[ext_resource type="Script" path="res://scripts/minigames/follow_the_pattern/test_game.gd" id="1_x7avq"]
+[ext_resource type="Script" path="res://scripts/minigames/follow_the_pattern/sequence_game.gd" id="1_univ0"]
 
 [node name="TestGame" type="Node2D"]
-script = ExtResource("1_x7avq")
+script = ExtResource("1_univ0")
 sequence_length = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]

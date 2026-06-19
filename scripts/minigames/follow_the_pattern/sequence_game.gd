@@ -18,15 +18,15 @@ var spawn_scene = preload("uid://cwy0x7fl2yjy2")
 const ARRAY_LENGTH : int = 12
 var sequence_order : Array[int]
 @export var sequence_length : int = 1
-const MAX_SEQ_LEN : int = ARRAY_LENGTH - 1
+const MAX_SEQ_LEN : int = ARRAY_LENGTH - 2
 var num_rune_symbols : int = 10
 const INPUT_LENGTH : int = 8
 
 var pattern_modifier : Array[Array] = [
-	["normal", "Pattern As Seen"],
+	["translate", "Pattern As Seen"],
 	["mirrored", "Pattern Reversed"],
 	["shifted", "Starting Point Shifted By", 0],
-	["inverted", "Values Inverted (1 = 0, 2 = 9, ...)"]
+	["reciprocal", "Values Inverted (1 = 0, 2 = 9, ...)"]
 ]
 
 var difficulty : float = 1.0
