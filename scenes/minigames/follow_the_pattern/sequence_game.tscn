@@ -20,6 +20,19 @@ zoom = Vector2(4, 4)
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="GameTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -216.0
+offset_top = -121.0
+offset_right = 216.0
+offset_bottom = -94.0
+max_value = 120.0
+value = 120.0
+show_percentage = false
+
 [connection signal="check_order" from="." to="." method="_on_check_order"]
 [connection signal="make_tile" from="." to="." method="_on_make_tile"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

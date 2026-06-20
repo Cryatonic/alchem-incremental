@@ -9,6 +9,10 @@ signal make_tile(rune_val : int, start_pos : Vector2)
 @onready var timer: Timer = $Timer
 var reset_seq : bool = false
 
+@onready var game_timer: Timer = $GameTimer
+@onready var progress_bar: ProgressBar = $ProgressBar
+var game_max_time : int = 120
+
 var slot_scene = preload("uid://8grqanudisur")
 var tile_scene = preload("uid://b4sxmvjrw2fwc")
 var spawn_scene = preload("uid://cwy0x7fl2yjy2")
@@ -18,7 +22,7 @@ var spawn_scene = preload("uid://cwy0x7fl2yjy2")
 const ARRAY_LENGTH : int = 12
 var sequence_order : Array[int]
 @export var sequence_length : int = 1
-const MAX_SEQ_LEN : int = ARRAY_LENGTH - 2
+const MAX_SEQ_LEN : int = ARRAY_LENGTH - 4
 var num_rune_symbols : int = 10
 const INPUT_LENGTH : int = 8
 
@@ -66,11 +70,12 @@ func _ready() -> void:
 		get_node("RuneTileSpawnContainer").add_child(new_spawn)
 		
 	populate_sequence()
+	game_timer.start(game_max_time)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	progress_bar.value = game_timer.time_left
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
@@ -180,6 +185,7 @@ func _on_check_order() -> void:
 	difficulty += 2.0
 	reset_seq = true
 	timer.start(1)
+	game_timer.paused = true
 	
 func make_another_tile(tile : RuneTileBase) -> void:
 	var tile_inst : RuneTileBase = tile_scene.instantiate()
@@ -200,4 +206,9 @@ func _on_timer_timeout() -> void:
 	if reset_seq:
 		populate_sequence(reset_seq)
 		reset_seq = false
+		var game_time = game_timer.time_left + 10.0
+		if game_time > game_max_time:
+			game_time = game_max_time
+		game_timer.paused = false
+		game_timer.start(game_time)
 	clear_board()

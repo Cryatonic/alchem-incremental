@@ -12,11 +12,11 @@ b = Vector2(-8, 14)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rie4u"]
 b = Vector2(20, 0)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72n0d"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1dtuf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_she8i"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72n0d"]
 
 [node name="Scale" type="Node2D"]
 script = ExtResource("1_ykrwg")
@@ -49,48 +49,71 @@ texture = ExtResource("1_pwjx6")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 96)
 
-[node name="LeftCup" type="Sprite2D" parent="SpriteComponents"]
-position = Vector2(-48, -42)
+[node name="LCupMarker" type="Marker2D" parent="SpriteComponents/ScaleArm"]
+position = Vector2(-2, 48)
+rotation = -1.5708
+
+[node name="RCupMarker" type="Marker2D" parent="SpriteComponents/ScaleArm"]
+position = Vector2(-2, -48)
+rotation = -1.5708
+
+[node name="LeftCupBody" type="AnimatableBody2D" parent="."]
+position = Vector2(-48, -26)
+
+[node name="LS" type="CollisionShape2D" parent="LeftCupBody"]
+position = Vector2(-17, -16)
+shape = SubResource("SegmentShape2D_ljljs")
+
+[node name="RS" type="CollisionShape2D" parent="LeftCupBody"]
+position = Vector2(17, -16)
+shape = SubResource("SegmentShape2D_ucba5")
+
+[node name="BS" type="CollisionShape2D" parent="LeftCupBody"]
+position = Vector2(-10, -2)
+shape = SubResource("SegmentShape2D_rie4u")
+
+[node name="LeftCup" type="Sprite2D" parent="LeftCupBody"]
+position = Vector2(0, -16)
 texture = ExtResource("1_pwjx6")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
-[node name="RightCup" type="Sprite2D" parent="SpriteComponents"]
-position = Vector2(48, -42)
+[node name="LCupDetectArea" type="Area2D" parent="LeftCupBody"]
+position = Vector2(0, -12)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCupBody/LCupDetectArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1dtuf")
+
+[node name="RightCupBody" type="AnimatableBody2D" parent="."]
+position = Vector2(48, -26)
+
+[node name="LS" type="CollisionShape2D" parent="RightCupBody"]
+position = Vector2(-17, -16)
+shape = SubResource("SegmentShape2D_ljljs")
+
+[node name="RS" type="CollisionShape2D" parent="RightCupBody"]
+position = Vector2(17, -16)
+shape = SubResource("SegmentShape2D_ucba5")
+
+[node name="BS" type="CollisionShape2D" parent="RightCupBody"]
+position = Vector2(-10, -2)
+shape = SubResource("SegmentShape2D_rie4u")
+
+[node name="RightCup" type="Sprite2D" parent="RightCupBody"]
+position = Vector2(0, -16)
 texture = ExtResource("1_pwjx6")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
-[node name="CupBodies" type="Node2D" parent="."]
+[node name="RCupDetectArea" type="Area2D" parent="RightCupBody"]
+position = Vector2(0, -12)
+collision_mask = 2
 
-[node name="LeftCupBody" type="AnimatableBody2D" parent="CupBodies"]
-
-[node name="LS" type="CollisionShape2D" parent="CupBodies/LeftCupBody"]
-position = Vector2(-65, -42)
-shape = SubResource("SegmentShape2D_ljljs")
-
-[node name="RS" type="CollisionShape2D" parent="CupBodies/LeftCupBody"]
-position = Vector2(-31, -42)
-shape = SubResource("SegmentShape2D_ucba5")
-
-[node name="BS" type="CollisionShape2D" parent="CupBodies/LeftCupBody"]
-position = Vector2(-58, -27)
-shape = SubResource("SegmentShape2D_rie4u")
-
-[node name="RightCupBody" type="AnimatableBody2D" parent="CupBodies"]
-position = Vector2(96, 0)
-
-[node name="LS" type="CollisionShape2D" parent="CupBodies/RightCupBody"]
-position = Vector2(-65, -42)
-shape = SubResource("SegmentShape2D_ljljs")
-
-[node name="RS" type="CollisionShape2D" parent="CupBodies/RightCupBody"]
-position = Vector2(-31, -42)
-shape = SubResource("SegmentShape2D_ucba5")
-
-[node name="BS" type="CollisionShape2D" parent="CupBodies/RightCupBody"]
-position = Vector2(-58, -27)
-shape = SubResource("SegmentShape2D_rie4u")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCupBody/RCupDetectArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_she8i")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
@@ -100,17 +123,3 @@ zoom = Vector2(4, 4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TableTop"]
 position = Vector2(0, 17)
 shape = SubResource("WorldBoundaryShape2D_72n0d")
-
-[node name="LCupDetectArea" type="Area2D" parent="."]
-position = Vector2(-48, -37)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LCupDetectArea"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_1dtuf")
-
-[node name="RCupDetectArea" type="Area2D" parent="."]
-position = Vector2(48, -37)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RCupDetectArea"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_she8i")

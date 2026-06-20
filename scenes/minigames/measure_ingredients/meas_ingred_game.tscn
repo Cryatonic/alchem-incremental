@@ -1,11 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvh5iw5urcwrv"]
+[gd_scene load_steps=4 format=3 uid="uid://bvh5iw5urcwrv"]
 
 [ext_resource type="PackedScene" uid="uid://ckklo13pgv070" path="res://scenes/minigames/measure_ingredients/scale.tscn" id="1_0jcg3"]
+[ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/meas_ingred_game.gd" id="1_kdiws"]
 [ext_resource type="PackedScene" uid="uid://cw5gbchc2403s" path="res://scenes/minigames/measure_ingredients/ingredient.tscn" id="2_vk7ld"]
 
 [node name="MeasIngredGame" type="Node2D"]
+script = ExtResource("1_kdiws")
 
 [node name="Scale" parent="." instance=ExtResource("1_0jcg3")]
 
-[node name="Ingredient" parent="." instance=ExtResource("2_vk7ld")]
+[node name="IngredientContainer" type="Node2D" parent="."]
+
+[node name="Ingredient" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
 position = Vector2(98, -15)
+
+[node name="Ingredient2" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(95, -31)
+
+[node name="Ingredient3" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(109, -25)
+
+[node name="Ingredient4" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(80, -21)
+
+[node name="Ingredient5" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(118, -7)
+
+[node name="Ingredient6" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(83, -7)
+
+[node name="Ingredient7" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(98, -3)
+
+[node name="Ingredient8" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
+position = Vector2(110, -42)

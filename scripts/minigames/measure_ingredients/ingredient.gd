@@ -13,6 +13,7 @@ var tween : Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite_2d.region_rect.position.x = ingredient_val * sprite_2d.region_rect.size.x
+	mass = randi_range(1,3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

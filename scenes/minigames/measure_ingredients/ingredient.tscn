@@ -8,7 +8,12 @@ radius = 3.0
 height = 12.0
 
 [node name="Ingredient" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
 input_pickable = true
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_4j80l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
