@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvh5iw5urcwrv"]
+[gd_scene load_steps=5 format=3 uid="uid://bvh5iw5urcwrv"]
 
 [ext_resource type="PackedScene" uid="uid://ckklo13pgv070" path="res://scenes/minigames/measure_ingredients/scale.tscn" id="1_0jcg3"]
 [ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/meas_ingred_game.gd" id="1_kdiws"]
 [ext_resource type="PackedScene" uid="uid://cw5gbchc2403s" path="res://scenes/minigames/measure_ingredients/ingredient.tscn" id="2_vk7ld"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrctr"]
 
 [node name="MeasIngredGame" type="Node2D"]
 script = ExtResource("1_kdiws")
@@ -34,3 +36,17 @@ position = Vector2(98, -3)
 
 [node name="Ingredient8" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
 position = Vector2(110, -42)
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-200, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("WorldBoundaryShape2D_wrctr")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(200, 0)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("WorldBoundaryShape2D_wrctr")
