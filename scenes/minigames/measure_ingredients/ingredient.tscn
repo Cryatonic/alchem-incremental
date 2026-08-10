@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cw5gbchc2403s"]
 
-[ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/ingredient.gd" id="1_4j80l"]
 [ext_resource type="Texture2D" uid="uid://c6rmu4msvj5ur" path="res://assets/sprites/ingredients_alpha.png" id="1_jc1df"]
+[ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/ingredient.gd" id="1_ublyd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r3883"]
 radius = 3.0
@@ -14,7 +14,7 @@ input_pickable = true
 can_sleep = false
 contact_monitor = true
 max_contacts_reported = 10
-script = ExtResource("1_4j80l")
+script = ExtResource("1_ublyd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jc1df")

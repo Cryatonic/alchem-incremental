@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvh5iw5urcwrv"]
+[gd_scene load_steps=7 format=3 uid="uid://bvh5iw5urcwrv"]
 
 [ext_resource type="PackedScene" uid="uid://ckklo13pgv070" path="res://scenes/minigames/measure_ingredients/scale.tscn" id="1_0jcg3"]
 [ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/meas_ingred_game.gd" id="1_kdiws"]
 [ext_resource type="PackedScene" uid="uid://cw5gbchc2403s" path="res://scenes/minigames/measure_ingredients/ingredient.tscn" id="2_vk7ld"]
+[ext_resource type="Texture2D" uid="uid://ddg6qd3b3ca5r" path="res://assets/sprites/scale-components.png" id="4_bgeau"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrctr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbyrn"]
+size = Vector2(6, 96)
 
 [node name="MeasIngredGame" type="Node2D"]
 script = ExtResource("1_kdiws")
@@ -50,3 +54,15 @@ rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("WorldBoundaryShape2D_wrctr")
+
+[node name="Shelf" type="StaticBody2D" parent="."]
+position = Vector2(-150, -60)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf"]
+texture = ExtResource("4_bgeau")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf"]
+shape = SubResource("RectangleShape2D_sbyrn")

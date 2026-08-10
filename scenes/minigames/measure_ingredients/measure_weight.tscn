@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq70wj6mg7c0d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3xhg"]
+
+[node name="MeasureWeight" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k3xhg")

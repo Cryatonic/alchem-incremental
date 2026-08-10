@@ -7,6 +7,9 @@ class_name MeasIngredGame
 var l_cup_bodies : Array
 var r_cup_bodies : Array
 
+const FRAME_WAIT_TIME : int = 3
+var frames_waited : int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -17,10 +20,13 @@ func _process(_delta: float) -> void:
 	l_cup_bodies = scale_object.l_cup_detect_area.get_overlapping_bodies()
 	r_cup_bodies = scale_object.r_cup_detect_area.get_overlapping_bodies()
 	
-	if l_cup_bodies.size() > 0:
-		scale_object.l_cup_held_bodies = determine_held_bodies(l_cup_bodies)
-	if r_cup_bodies.size() > 0:
-		scale_object.r_cup_held_bodies = determine_held_bodies(r_cup_bodies)
+	if l_cup_bodies.size() > 0 or r_cup_bodies.size() > 0:
+		if frames_waited < FRAME_WAIT_TIME:
+			frames_waited += 1
+		else:
+			scale_object.l_cup_held_bodies = determine_held_bodies(l_cup_bodies)
+			scale_object.r_cup_held_bodies = determine_held_bodies(r_cup_bodies)
+			frames_waited = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_info"):
