@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvh5iw5urcwrv"]
+[gd_scene load_steps=8 format=3 uid="uid://bvh5iw5urcwrv"]
 
 [ext_resource type="PackedScene" uid="uid://ckklo13pgv070" path="res://scenes/minigames/measure_ingredients/scale.tscn" id="1_0jcg3"]
 [ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/meas_ingred_game.gd" id="1_kdiws"]
 [ext_resource type="PackedScene" uid="uid://cw5gbchc2403s" path="res://scenes/minigames/measure_ingredients/ingredient.tscn" id="2_vk7ld"]
 [ext_resource type="Texture2D" uid="uid://ddg6qd3b3ca5r" path="res://assets/sprites/scale-components.png" id="4_bgeau"]
+[ext_resource type="PackedScene" uid="uid://cq70wj6mg7c0d" path="res://scenes/minigames/measure_ingredients/measure_weight.tscn" id="4_i4xqi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrctr"]
 
@@ -40,6 +41,23 @@ position = Vector2(98, -3)
 
 [node name="Ingredient8" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
 position = Vector2(110, -42)
+
+[node name="MeasureWeightContainer" type="Node2D" parent="."]
+
+[node name="MeasureWeight1" parent="MeasureWeightContainer" instance=ExtResource("4_i4xqi")]
+position = Vector2(-181, -109)
+
+[node name="MeasureWeight2" parent="MeasureWeightContainer" instance=ExtResource("4_i4xqi")]
+position = Vector2(-160, -109)
+size = 1
+
+[node name="MeasureWeight4" parent="MeasureWeightContainer" instance=ExtResource("4_i4xqi")]
+position = Vector2(-138, -109)
+size = 2
+
+[node name="MeasureWeight8" parent="MeasureWeightContainer" instance=ExtResource("4_i4xqi")]
+position = Vector2(-113, -109)
+size = 3
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 position = Vector2(-200, 0)

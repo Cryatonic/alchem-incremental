@@ -1,10 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq70wj6mg7c0d"]
+[gd_scene load_steps=4 format=3 uid="uid://cq70wj6mg7c0d"]
+
+[ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/measure_weight.gd" id="1_p4fy0"]
+[ext_resource type="Texture2D" uid="uid://bbn1cas4ghcey" path="res://assets/sprites/measure-weights.png" id="1_ubq3q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3xhg"]
+size = Vector2(4, 4)
 
 [node name="MeasureWeight" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+input_pickable = true
+can_sleep = false
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_p4fy0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_ubq3q")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k3xhg")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
