@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvh5iw5urcwrv"]
+[gd_scene load_steps=11 format=3 uid="uid://bvh5iw5urcwrv"]
 
 [ext_resource type="PackedScene" uid="uid://ckklo13pgv070" path="res://scenes/minigames/measure_ingredients/scale.tscn" id="1_0jcg3"]
 [ext_resource type="Script" path="res://scripts/minigames/measure_ingredients/meas_ingred_game.gd" id="1_kdiws"]
-[ext_resource type="PackedScene" uid="uid://cw5gbchc2403s" path="res://scenes/minigames/measure_ingredients/ingredient.tscn" id="2_vk7ld"]
 [ext_resource type="Texture2D" uid="uid://ddg6qd3b3ca5r" path="res://assets/sprites/scale-components.png" id="4_bgeau"]
 [ext_resource type="PackedScene" uid="uid://cq70wj6mg7c0d" path="res://scenes/minigames/measure_ingredients/measure_weight.tscn" id="4_i4xqi"]
 
@@ -11,36 +10,25 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbyrn"]
 size = Vector2(6, 96)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oacil"]
+b = Vector2(8, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1737e"]
+b = Vector2(-8, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ux7r6"]
+b = Vector2(20, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v1dub"]
+radius = 10.0
+height = 26.0
+
 [node name="MeasIngredGame" type="Node2D"]
 script = ExtResource("1_kdiws")
 
 [node name="Scale" parent="." instance=ExtResource("1_0jcg3")]
 
 [node name="IngredientContainer" type="Node2D" parent="."]
-
-[node name="Ingredient" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(98, -15)
-
-[node name="Ingredient2" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(95, -31)
-
-[node name="Ingredient3" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(109, -25)
-
-[node name="Ingredient4" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(80, -21)
-
-[node name="Ingredient5" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(118, -7)
-
-[node name="Ingredient6" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(83, -7)
-
-[node name="Ingredient7" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(98, -3)
-
-[node name="Ingredient8" parent="IngredientContainer" instance=ExtResource("2_vk7ld")]
-position = Vector2(110, -42)
 
 [node name="MeasureWeightContainer" type="Node2D" parent="."]
 
@@ -84,3 +72,70 @@ region_rect = Rect2(32, 0, 32, 96)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf"]
 shape = SubResource("RectangleShape2D_sbyrn")
+
+[node name="IngredBowl" type="AnimatableBody2D" parent="."]
+z_index = -1
+position = Vector2(158, 17)
+scale = Vector2(2, 2)
+
+[node name="LS" type="CollisionShape2D" parent="IngredBowl"]
+position = Vector2(-17, -16)
+shape = SubResource("SegmentShape2D_oacil")
+
+[node name="RS" type="CollisionShape2D" parent="IngredBowl"]
+position = Vector2(17, -16)
+shape = SubResource("SegmentShape2D_1737e")
+
+[node name="BS" type="CollisionShape2D" parent="IngredBowl"]
+position = Vector2(-10, -2)
+shape = SubResource("SegmentShape2D_ux7r6")
+
+[node name="RightCup" type="Sprite2D" parent="IngredBowl"]
+position = Vector2(0, -16)
+texture = ExtResource("4_bgeau")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="IngredSpawn" type="Marker2D" parent="IngredBowl"]
+position = Vector2(0, -8)
+
+[node name="CollectionBowl" type="AnimatableBody2D" parent="."]
+z_index = -1
+position = Vector2(-158, 17)
+scale = Vector2(2, 2)
+
+[node name="LS" type="CollisionShape2D" parent="CollectionBowl"]
+position = Vector2(-17, -16)
+shape = SubResource("SegmentShape2D_oacil")
+
+[node name="RS" type="CollisionShape2D" parent="CollectionBowl"]
+position = Vector2(17, -16)
+shape = SubResource("SegmentShape2D_1737e")
+
+[node name="BS" type="CollisionShape2D" parent="CollectionBowl"]
+position = Vector2(-10, -2)
+shape = SubResource("SegmentShape2D_ux7r6")
+
+[node name="RightCup" type="Sprite2D" parent="CollectionBowl"]
+position = Vector2(0, -16)
+texture = ExtResource("4_bgeau")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollectionDetector" type="Area2D" parent="CollectionBowl"]
+position = Vector2(0, -12)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionBowl/CollectionDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v1dub")
+
+[node name="FinishButton" type="Button" parent="."]
+offset_left = -186.0
+offset_top = 20.0
+offset_right = -132.0
+offset_bottom = 51.0
+action_mode = 0
+text = "Finish"
+
+[connection signal="pressed" from="FinishButton" to="." method="_on_finish_button_pressed"]

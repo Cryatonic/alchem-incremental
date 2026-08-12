@@ -16,8 +16,6 @@ var r_cup_weight : int = 0
 var r_cup_held_bodies : Array[WeightedPhysicsObject]
 
 var tween : Tween
-const CUP_WEIGHT : float = 5.0
-const grav : float = 980 #pixels/s/s of gravity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
