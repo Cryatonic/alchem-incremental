@@ -41,6 +41,7 @@ func spawn_ingredient(m : int, ingred_type : int) -> void:
 	get_node("IngredientContainer").add_child(ingred)
 
 func start_game(ingred_type : int = 0) -> void:
+	@warning_ignore("narrowing_conversion")
 	required_mass = randi_range(ingred_weights[0],15)
 	print("Required Mass = " + str(required_mass))
 	var cur_mass : int = required_mass
@@ -49,6 +50,7 @@ func start_game(ingred_type : int = 0) -> void:
 		if cur_mass <= ingred_weights[1]:
 			spawn_ingredient(cur_mass, ingred_type)
 			break
+		@warning_ignore("narrowing_conversion")
 		ing_mass = randi_range(ingred_weights[0],ingred_weights[1])
 		spawn_ingredient(ing_mass, ingred_type)
 		cur_mass -= ing_mass
